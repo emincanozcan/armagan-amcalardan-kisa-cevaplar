@@ -17,7 +17,7 @@ export default {
   props: { qa: Object },
   setup(props) {
     const showAnswer = ref(false);
-    const embedUrl = `http://www.youtube.com/embed/${
+    const embedUrl = `https://www.youtube.com/embed/${
       props.qa.videoId
     }?autoplay=1&start=${
       parseInt(props.qa.minute) * 60 + parseInt(props.qa.second)
