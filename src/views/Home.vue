@@ -20,6 +20,9 @@ export default {
   setup() {
     const searchText = ref("");
 
+    // not `real` random but enough for this use case
+    data.sort(() => 0.5 - Math.random())
+
     const QADataFiltered = computed(() =>
       data.filter((QA) =>
         QA.body.toLowerCase().includes(searchText.value.toLowerCase())

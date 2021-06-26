@@ -9,6 +9,7 @@
         @click="showAnswer = !showAnswer"
       ) {{ showAnswer ? 'Cevabı Gizle' : 'Cevabı Gör' }}
     .mt-4(v-if="showAnswer")
+      p.text-xs.text-gray-500.text-right.mb-4 (Video cevabın verildiği zamandan başlar.)
       iframe.w-full.h-60(class="sm:h-80 md:h-96", :src="embedUrl", frameborder="0")
 </template>
 
