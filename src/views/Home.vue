@@ -1,18 +1,32 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+<template lang="pug">
+.max-w-2xl.w-full.mx-auto.px-4
+  input.px-4.py-3.mb-4.shadow-md.rounded-md.w-full(
+    type="text",
+    v-model="searchText",
+    placeholder="Sorularda Ara..."
+  )
+  .text-sm.text-right.text-gray-700.mb-8 Toplam {{ data.length }} cevaptan {{ QADataFiltered.length }} tanesi gösteriliyor.
+  QA(v-for="(QA, i) in QADataFiltered", :key="QA.body", :qa="QA")
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import QA from "@/components/qa";
+import data from "@/data.json";
+import { computed, ref } from "vue";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
+  components: { QA },
+  setup() {
+    const searchText = ref("");
+
+    const QADataFiltered = computed(() =>
+      data.filter((QA) =>
+        QA.body.toLowerCase().includes(searchText.value.toLowerCase())
+      )
+    );
+
+    return { QADataFiltered, data, searchText };
   },
 };
 </script>

@@ -1,24 +1,9 @@
-# armagan-amcalar-qa
+# Short Answers From Armağan Amcalar
 
-## Project setup
-```
-yarn install
-```
+Armağan Amcalar is a developer who makes videos that I like. I think the ideas in his videos are really valuable. That's why I created this hobby project to make some partitions of his videos more easily findable.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## How To Generate Data:
+ * Youtube API Key is required, get it first.
+ * Open the `src/build-utils/generate-data.js` file and set the Api Key. 
+ * Run `yarn generate-data` or `npm run generate-data`
+ * The `data.json` file will be created in `src` folder.
