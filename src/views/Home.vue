@@ -1,24 +1,25 @@
 <template lang="pug">
-.max-w-2xl.w-full.mx-auto.px-4
-  input.px-4.py-3.mb-4.shadow-md.rounded-md.w-full(
+container
+  input.search(
     type="text",
     v-model="searchText",
     placeholder="Sorularda Ara..."
   )
-  .text-sm.text-right.text-gray-700.mb-8 Toplam {{ data.length }} cevaptan {{ QADataFiltered.length }} tanesi gösteriliyor.
-  QA(v-for="(QA, i) in QADataFiltered", :key="QA.body", :qa="QA")
+  p.qa-count Toplam {{ data.length }} cevaptan {{ QADataFiltered.length }} tanesi gösteriliyor.
+  QuestionAnswer(v-for="QAData in QADataFiltered", :key="QAData.body", :QAData="QAData")
 </template>
 
 <script>
-import QA from "@/components/qa";
-import data from "@/data.json";
-import { computed, ref } from "vue";
+import Container from '@/components/Container'
+import QuestionAnswer from '@/components/QuestionAnswer'
+import data from '@/data.json'
+import { computed, ref } from 'vue'
 
 export default {
-  name: "Home",
-  components: { QA },
+  name: 'Home',
+  components: { QuestionAnswer, Container },
   setup() {
-    const searchText = ref("");
+    const searchText = ref('')
 
     // not `real` random but enough for this use case
     data.sort(() => 0.5 - Math.random())
@@ -27,9 +28,30 @@ export default {
       data.filter((QA) =>
         QA.body.toLowerCase().includes(searchText.value.toLowerCase())
       )
-    );
+    )
 
-    return { QADataFiltered, data, searchText };
-  },
-};
+    return { QADataFiltered, data, searchText }
+  }
+}
 </script>
+<style lang="scss" scoped>
+input.search {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px #ccc;
+  border-radius: 0.5rem;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 3px 1px rgb(0, 119, 255);
+  }
+}
+
+p.qa-count {
+  font-size: 0.875rem;
+  text-align: right;
+  color: #444;
+  margin-bottom: 2rem;
+}
+</style>
