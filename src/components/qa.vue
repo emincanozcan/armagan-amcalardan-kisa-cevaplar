@@ -20,11 +20,19 @@ export default {
   props: { qa: Object },
   setup(props) {
     const showAnswer = ref(false);
+
+    const getTime = ({ minute, second }) =>
+      parseInt(minute) * 60 + parseInt(second);
+
+    // @TODO: refactor embedUrl generation...
     const embedUrl = `https://www.youtube.com/embed/${
       props.qa.videoId
-    }?autoplay=1&start=${
-      parseInt(props.qa.minute) * 60 + parseInt(props.qa.second)
+    }?autoplay=1&start=${getTime(props.qa.start)}${
+      Object.keys(props.qa.end).length > 0
+        ? "&end=" + getTime(props.qa.end)
+        : ""
     }`;
+
     return {
       body: props.qa.body,
       showAnswer,

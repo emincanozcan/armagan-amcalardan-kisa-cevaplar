@@ -8,10 +8,13 @@ function processData(videos) {
     const key = video.id;
     const { description } = video.snippet
     const matchedLines = [...description.matchAll(re)];
-    matchedLines.forEach(line => {
-      let body = line[1].trim();
+    matchedLines.forEach((currentLine, i) => {
+      let body = currentLine[1].trim();
       if (body.startsWith('-')) body = body.slice(1).trim()
-      processedData.push({ videoId: key, body, minute: line[2], second: line[3] })
+
+      const start = { minute: currentLine[2], second: currentLine[3] }
+      const end = matchedLines[i + 1] ? { minute: matchedLines[i + 1][2], second: matchedLines[i+1][3] } : {}
+      processedData.push({ videoId: key, body, start, end })
     })
   });
   return processedData;
@@ -30,7 +33,7 @@ async function fetchQAs({ apiKey }, videoIds) {
   );
 
   jsonResponses.forEach(jsonResp => {
-    data = [ ...data, ...processData(jsonResp.items) ]
+    data = [...data, ...processData(jsonResp.items)]
   })
 
   return data;
