@@ -1,8 +1,3 @@
-<template lang="pug">
-.iframe-wrapper
-  iframe(:src="embedUrl", frameborder="0")
-</template>
-
 <script>
 export default {
   name: 'QuestionAnswerIframe',
@@ -25,6 +20,12 @@ export default {
   }
 }
 </script>
+
+<template lang="pug">
+.iframe-wrapper
+  iframe(:src='embedUrl', frameborder='0')
+</template>
+
 <style scoped>
 .iframe-wrapper {
   position: relative;

@@ -1,14 +1,3 @@
-<template lang="pug">
-container
-  input.search(
-    type="text",
-    v-model="searchText",
-    placeholder="Sorularda Ara..."
-  )
-  p.qa-count Toplam {{ data.length }} cevaptan {{ QADataFiltered.length }} tanesi gösteriliyor.
-  QuestionAnswer(v-for="QAData in QADataFiltered", :key="QAData.body", :QAData="QAData")
-</template>
-
 <script>
 import Container from '@/components/Container'
 import QuestionAnswer from '@/components/QuestionAnswer'
@@ -34,6 +23,22 @@ export default {
   }
 }
 </script>
+
+<template lang="pug">
+container
+  input.search(
+    type='text',
+    v-model='searchText',
+    placeholder='Sorularda Ara...'
+  )
+  p.qa-count Toplam {{ data.length }} cevaptan {{ QADataFiltered.length }} tanesi gösteriliyor.
+  QuestionAnswer(
+    v-for='QAData in QADataFiltered',
+    :key='QAData.body',
+    :QAData='QAData'
+  )
+</template>
+
 <style lang="scss" scoped>
 input.search {
   padding: 1rem;
