@@ -1,18 +1,3 @@
-<template lang="pug">
-container
-  article
-    p Armağan Amcalar, Youtube'da sevdiğim videolar yayınlayan bir yazılım geliştirici. Videolarında paylaştığı fikirlerin oldukça değerli olduğunu düşünüyorum. Bu sebeple, videolarında yer alan bazı bölümleri daha kolay erişilebilir kılmak için bu hobi projesini hayata geçirdim.
-    p İlgili videoları topladığım Youtube kanalına gitmek için{{ " " }}
-      a(
-        target="_blank",
-        href="https://www.youtube.com/c/Arma%C4%9FanAmcalar/videos"
-      ) tıklayınız.
-    p Proje GitHub Reposuna gitmek için{{ " " }}
-      a(
-        target="_blank",
-        href="https://github.com/emincanozcan/armagan-amcalardan-kisa-cevaplar"
-      ) tıklayınız.
-</template>
 <script>
 import Container from '@/components/Container'
 
@@ -21,6 +6,23 @@ export default {
   setup() {}
 }
 </script>
+
+<template lang="pug">
+container
+  article
+    p Armağan Amcalar, Youtube'da sevdiğim videolar yayınlayan bir yazılım geliştirici. Videolarında paylaştığı fikirlerin oldukça değerli olduğunu düşünüyorum. Bu sebeple, videolarında yer alan bazı bölümleri daha kolay erişilebilir kılmak için bu hobi projesini hayata geçirdim.
+    p İlgili videoları topladığım Youtube kanalına gitmek için{{ " " }}
+      a(
+        target='_blank',
+        href='https://www.youtube.com/c/Arma%C4%9FanAmcalar/videos'
+      ) tıklayınız.
+    p Proje GitHub Reposuna gitmek için{{ " " }}
+      a(
+        target='_blank',
+        href='https://github.com/emincanozcan/armagan-amcalardan-kisa-cevaplar'
+      ) tıklayınız.
+</template>
+
 <style lang="scss" scoped>
 article {
   padding: 1rem;

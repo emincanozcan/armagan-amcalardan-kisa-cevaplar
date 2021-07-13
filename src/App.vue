@@ -1,11 +1,3 @@
-<template lang="pug">
-main
-  nav
-    Container
-      router-link(to="/", active-class="active") Cevaplar
-      router-link(to="/about", active-class="active") Proje Hakkında
-  router-view
-</template>
 <script>
 import Container from '@/components/Container'
 
@@ -13,6 +5,16 @@ export default {
   components: { Container }
 }
 </script>
+
+<template lang="pug">
+main
+  nav
+    Container
+      router-link(to='/', active-class='active') Cevaplar
+      router-link(to='/about', active-class='active') Proje Hakkında
+  router-view
+</template>
+
 <style lang="scss" scoped>
 main {
   background: #f4f4f4;

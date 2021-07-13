@@ -1,10 +1,12 @@
+<script>
+export default { name: 'Container' }
+</script>
+
 <template lang="pug">
 .container
   slot
 </template>
-<script>
-export default { name: "Container" };
-</script>
+
 <style scoped>
 .container {
   max-width: 44rem;

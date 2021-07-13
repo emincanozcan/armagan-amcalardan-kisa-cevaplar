@@ -1,13 +1,3 @@
-<template lang="pug">
-.qa
-  .question-area
-    p.question-text {{ QAData.body }}
-    button.answer-toggle-btn(@click="showAnswer = !showAnswer") {{ showAnswer ? "Cevabı Gizle" : "Cevabı Gör" }}
-  .answer-area(v-if="showAnswer")
-    p (Video cevabın verildiği zamandan başlar.)
-    qa-iframe(:start="QAData.start", :end="QAData.end", :video-id="QAData.videoId")
-</template>
-
 <script>
 import QaIframe from '@/components/QuestionAnswerIframe'
 import { ref } from 'vue'
@@ -22,6 +12,20 @@ export default {
   }
 }
 </script>
+
+<template lang="pug">
+.qa
+  .question-area
+    p.question-text {{ QAData.body }}
+    button.answer-toggle-btn(@click='showAnswer = !showAnswer') {{ showAnswer ? "Cevabı Gizle" : "Cevabı Gör" }}
+  .answer-area(v-if='showAnswer')
+    p (Video cevabın verildiği zamandan başlar.)
+    qa-iframe(
+      :start='QAData.start',
+      :end='QAData.end',
+      :video-id='QAData.videoId'
+    )
+</template>
 
 <style lang="scss" scoped>
 .qa {
