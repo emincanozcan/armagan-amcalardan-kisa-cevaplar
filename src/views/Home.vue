@@ -2,7 +2,7 @@
 import Container from '@/components/Container'
 import QuestionAnswer from '@/components/QuestionAnswer'
 import data from '@/data.json'
-import { computed, ref } from 'vue'
+import {  ref, watch } from 'vue'
 
 export default {
   name: 'Home',
@@ -13,13 +13,20 @@ export default {
     // not `real` random but enough for this use case
     data.sort(() => 0.5 - Math.random())
 
-    const QADataFiltered = computed(() =>
-      data.filter((QA) =>
-        QA.body.toLowerCase().includes(searchText.value.toLowerCase())
-      )
+    const filteredCount = ref(data.length)
+
+    watch(
+      () => searchText.value,
+      () => {
+        filteredCount.value = data.filter((QA) =>
+          QA.body.toLowerCase().includes(searchText.value.toLowerCase())
+        ).length
+
+        window.dispatchEvent(new Event("stopVideo"))
+      }
     )
 
-    return { QADataFiltered, data, searchText }
+    return { filteredCount, data, searchText }
   }
 }
 </script>
@@ -31,11 +38,12 @@ container
     v-model='searchText',
     placeholder='Sorularda Ara...'
   )
-  p.qa-count Toplam {{ data.length }} cevaptan {{ QADataFiltered.length }} tanesi gösteriliyor.
+  p.qa-count Toplam {{ data.length }} cevaptan {{ filteredCount }} tanesi gösteriliyor.
   QuestionAnswer(
-    v-for='QAData in QADataFiltered',
-    :key='QAData.videoId + QAData.start.minute + QAData.start.second',
+    v-for='(QAData,key) in data',
+    :key='key',
     :QAData='QAData'
+    v-show="QAData.body.toLowerCase().includes(searchText.toLowerCase())"
   )
 </template>
 

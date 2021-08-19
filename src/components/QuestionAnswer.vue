@@ -8,6 +8,9 @@ export default {
   components: { QaIframe },
   setup() {
     const showAnswer = ref(false)
+    window.addEventListener("stopVideo", () => {
+      showAnswer.value = false;
+    })
     return { showAnswer }
   }
 }
