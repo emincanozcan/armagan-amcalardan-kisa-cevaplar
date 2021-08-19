@@ -34,7 +34,7 @@ container
   p.qa-count Toplam {{ data.length }} cevaptan {{ QADataFiltered.length }} tanesi gösteriliyor.
   QuestionAnswer(
     v-for='QAData in QADataFiltered',
-    :key='QAData.body',
+    :key='QAData.videoId + QAData.start.minute + QAData.start.second',
     :QAData='QAData'
   )
 </template>
