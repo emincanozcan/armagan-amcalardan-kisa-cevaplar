@@ -2,7 +2,7 @@ const fetch = require('node-fetch')
 const sliceIntoChunks = require('./slice-into-chunks')
 
 function processData(videos) {
-  let re = /(.*?)\(([0-9]{2}):([0-9]{2})\)/gm
+  let re = /(.*?)\(([0-9]{1}|[0-9]{2}):([0-9]{2})\)/gm
   const processedData = []
 
   videos.forEach((video) => {
